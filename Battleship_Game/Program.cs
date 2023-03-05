@@ -1,4 +1,6 @@
+using Battleship.Application.EventContexts.Users.Commands.CreateUserCommand;
 using Battleship.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -9,6 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddPersistence(builder.Configuration.GetConnectionString("ApplicationDefault")!);
+builder.Services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<CreateUserCommand>());
 
 var app = builder.Build();
 

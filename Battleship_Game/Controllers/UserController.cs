@@ -1,24 +1,17 @@
-﻿using Battleship.Persistence.Interfaces;
-using Microsoft.AspNetCore.Http;
+﻿using Battleship.Application.EventContexts.Users.Commands.CreateUserCommand;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace Battleship.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : BaseApiController
     {
-        private IApplicationDbContext _context;
-        public UserController(IApplicationDbContext dbContext)
-        {
-            _context = dbContext;
-        }
         [HttpPost]
-        public async Task<IActionResult> RegisterUser()
+        public async Task<IActionResult> RegisterUser([Required][FromBody] CreateUserCommand command)
         {
-            var user = await _context.Users.AddAsync(new Domain.Entities.User { DateCreated = DateTime.Now, DateUpdated = DateTime.Now, Id = new Guid(), UserName = "itirsina98" });
-            await _context.SaveChangesAsync(cancellationToken: default);
-            return Ok(user.Entity);
+            return Ok(await Mediator.Send(command));
         }
     }
 }
