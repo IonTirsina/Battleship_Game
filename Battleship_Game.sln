@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleship.Api", "Battleship_Game\Battleship.Api.csproj", "{F1C944A1-2FD7-4ECA-86ED-4804BB92ABCD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battleship.Api", "Battleship_Game\Battleship.Api.csproj", "{F1C944A1-2FD7-4ECA-86ED-4804BB92ABCD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleship.Application", "Battleship.Application\Battleship.Application.csproj", "{AE84EC89-ACA9-47AF-8126-AC168A0CB661}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battleship.Application", "Battleship.Application\Battleship.Application.csproj", "{AE84EC89-ACA9-47AF-8126-AC168A0CB661}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleship.Persistence", "Battleship.Persistence\Battleship.Persistence.csproj", "{45E484FF-ABE9-4D80-8834-BE51A34AFCA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battleship.Persistence", "Battleship.Persistence\Battleship.Persistence.csproj", "{45E484FF-ABE9-4D80-8834-BE51A34AFCA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleship.Domain", "Battleship.Domain\Battleship.Domain.csproj", "{0BCBF9C4-D033-479A-A0A9-879116D00C4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Battleship.Domain", "Battleship.Domain\Battleship.Domain.csproj", "{0BCBF9C4-D033-479A-A0A9-879116D00C4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleship.Tests", "Battleship.Tests\Battleship.Tests.csproj", "{2378BB44-0502-4965-8AD2-E05F2BF66CA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{0BCBF9C4-D033-479A-A0A9-879116D00C4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BCBF9C4-D033-479A-A0A9-879116D00C4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BCBF9C4-D033-479A-A0A9-879116D00C4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2378BB44-0502-4965-8AD2-E05F2BF66CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2378BB44-0502-4965-8AD2-E05F2BF66CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2378BB44-0502-4965-8AD2-E05F2BF66CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2378BB44-0502-4965-8AD2-E05F2BF66CA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

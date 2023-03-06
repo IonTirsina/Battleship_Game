@@ -7,6 +7,8 @@ namespace Battleship.Application.EventContexts.Users.Commands.CreateUserCommand
     public class CreateUserCommand : IRequest<User>
     {
         public string UserName { get; set; } = "";
+        public string Password { get; set; } = "";
+        public string PasswordConfirmation { get; set; } = "";
     }
 
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, User>
@@ -20,8 +22,16 @@ namespace Battleship.Application.EventContexts.Users.Commands.CreateUserCommand
 
         public async Task<User> Handle(CreateUserCommand command, CancellationToken cancellationToken)
         {
-            // TODO : automapper;
-            User userToCreate = new User(command.UserName);
+            if (command.Password != command.PasswordConfirmation)
+            {
+                throw new ArgumentException("Password confirmation does not match password");
+            }
+
+
+            var passwordHash = BCrypt.Net.BCrypt.HashPassword(command.Password);
+
+            User userToCreate = new(command.UserName, passwordHash);
+
 
             var createdUser = await _dbContext.Users.AddAsync(userToCreate, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);

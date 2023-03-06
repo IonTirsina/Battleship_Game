@@ -9,6 +9,7 @@ namespace Battleship.Persistence.EntityDbConfigurations
         public virtual void Configure(EntityTypeBuilder<User> builder)
         {
             builder.Property(u => u.UserName).IsRequired().HasMaxLength(100);
+            builder.Property(u => u.PasswordHash).IsRequired();
         }
     }
 }

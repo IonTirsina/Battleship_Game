@@ -3,7 +3,7 @@ using Battleship.Domain.Entities;
 
 namespace Battleship.Persistence.Interfaces
 {
-    public interface IApplicationDbContext
+    public interface IApplicationDbContext : IDisposable
     {
         DbSet<User> Users { get; }
 
