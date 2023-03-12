@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Battleship.Domain.Entities;
 using Battleship.Persistence.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Battleship.Application.EventContexts.Users.Commands.CreateUserCommand
 {
@@ -25,6 +26,13 @@ namespace Battleship.Application.EventContexts.Users.Commands.CreateUserCommand
             if (command.Password != command.PasswordConfirmation)
             {
                 throw new ArgumentException("Password confirmation does not match password");
+            }
+
+            bool userExists = await _dbContext.Users.AnyAsync(u => u.UserName == command.UserName);
+
+            if (userExists)
+            {
+                throw new InvalidOperationException("User with such username already exists");
             }
 
 

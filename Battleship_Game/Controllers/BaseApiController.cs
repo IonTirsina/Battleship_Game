@@ -1,11 +1,13 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Battleship.Api.Controllers
 {
     [Route("api")]
     [ApiController]
-    public class BaseApiController : Controller
+    [Authorize]
+    public class BaseApiController : ControllerBase
     {
         private IMediator _mediator;
 
