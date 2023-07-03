@@ -36,12 +36,13 @@ namespace Battleship.Application.EventContexts.Users.Commands.AuthenticateUserCo
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+            double sessionLifetime = _configuration.GetValue<double>("Jwt:SessionLifetime");
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["Jwt:Issuer"],
                 audience: _configuration["Jwt:Audience"],
                 claims: null,
-                expires: DateTime.Now.AddSeconds(30),
+                expires: DateTime.Now.AddSeconds(sessionLifetime),
                 signingCredentials: credentials
             );
 

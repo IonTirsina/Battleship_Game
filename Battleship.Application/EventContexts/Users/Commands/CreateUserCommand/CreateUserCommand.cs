@@ -2,6 +2,7 @@
 using Battleship.Domain.Entities;
 using Battleship.Persistence.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace Battleship.Application.EventContexts.Users.Commands.CreateUserCommand
 {
@@ -32,7 +33,7 @@ namespace Battleship.Application.EventContexts.Users.Commands.CreateUserCommand
 
             if (userExists)
             {
-                throw new InvalidOperationException("User with such username already exists");
+                throw new DuplicateNameException("User with such username already exists");
             }
 
 
