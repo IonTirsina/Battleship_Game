@@ -26,8 +26,7 @@ namespace Battleship.Application.EventContexts.Users.Commands.AuthenticateUserCo
         }
         public async Task<string> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
         {
-            string passwordHash = BCrypt.Net.BCrypt.HashPassword(request.Password);
-            var users = await _dbContext.Users.FirstOrDefaultAsync(u => u.PasswordHash== passwordHash && u.UserName == request.UserName);
+            var users = await _dbContext.Users.FirstOrDefaultAsync(u => u.UserName == request.UserName && u.PasswordHash == request.Password);
 
             if (users == null)
             {

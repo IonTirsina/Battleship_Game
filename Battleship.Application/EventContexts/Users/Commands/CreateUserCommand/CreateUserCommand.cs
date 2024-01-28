@@ -37,9 +37,8 @@ namespace Battleship.Application.EventContexts.Users.Commands.CreateUserCommand
             }
 
 
-            var passwordHash = BCrypt.Net.BCrypt.HashPassword(command.Password);
 
-            User userToCreate = new(command.UserName, passwordHash);
+            User userToCreate = new(command.UserName, command.Password);
 
 
             var createdUser = await _dbContext.Users.AddAsync(userToCreate, cancellationToken);
