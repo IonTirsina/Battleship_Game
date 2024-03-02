@@ -1,1 +1,0 @@
-export { AuthenticationPageComponent } from './authentication-page/authentication-page.component';
