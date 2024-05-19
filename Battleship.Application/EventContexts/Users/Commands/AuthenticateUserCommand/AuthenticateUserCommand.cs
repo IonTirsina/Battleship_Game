@@ -8,13 +8,13 @@ using System.Text;
 
 namespace Battleship.Application.EventContexts.Users.Commands.AuthenticateUserCommand
 {
-    public class AuthenticateUserCommand : IRequest<string>
+    public class AuthenticateUserCommand : IRequest<string?>
     {
         public string UserName { get; set; }
         public string Password { get; set; }
     }
 
-    public class AuthenticateUserCommandHandler : IRequestHandler<AuthenticateUserCommand, string>
+    public class AuthenticateUserCommandHandler : IRequestHandler<AuthenticateUserCommand, string?>
     {
         private readonly IApplicationDbContext _dbContext;
         private readonly IConfiguration _configuration;
@@ -24,13 +24,13 @@ namespace Battleship.Application.EventContexts.Users.Commands.AuthenticateUserCo
             _dbContext = dbContext;
             _configuration = configuration;
         }
-        public async Task<string> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
+        public async Task<string?> Handle(AuthenticateUserCommand request, CancellationToken cancellationToken)
         {
             var users = await _dbContext.Users.FirstOrDefaultAsync(u => u.UserName == request.UserName && u.PasswordHash == request.Password);
 
             if (users == null)
             {
-                throw new Exception("Unauthorized"); // TODO : define exceptions
+                return null;
             }
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));

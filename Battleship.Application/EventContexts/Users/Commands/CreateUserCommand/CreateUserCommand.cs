@@ -36,10 +36,7 @@ namespace Battleship.Application.EventContexts.Users.Commands.CreateUserCommand
                 throw new DuplicateNameException("User with such username already exists");
             }
 
-
-
             User userToCreate = new(command.UserName, command.Password);
-
 
             var createdUser = await _dbContext.Users.AddAsync(userToCreate, cancellationToken);
             await _dbContext.SaveChangesAsync(cancellationToken);
